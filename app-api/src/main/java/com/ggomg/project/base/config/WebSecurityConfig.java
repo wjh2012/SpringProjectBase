@@ -23,11 +23,11 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests((authorize) -> authorize
-                        .anyRequest().authenticated())
-                .exceptionHandling(exceptionConfig -> exceptionConfig
-                        .authenticationEntryPoint(restAuthenticationEntryPoint)
-                        .accessDeniedHandler(restAccessDeniedHandler));
+            .authorizeHttpRequests(authorize -> authorize
+                .anyRequest().authenticated())
+            .exceptionHandling(exceptionConfig -> exceptionConfig
+                .authenticationEntryPoint(restAuthenticationEntryPoint)
+                .accessDeniedHandler(restAccessDeniedHandler));
 
         return http.build();
     }
