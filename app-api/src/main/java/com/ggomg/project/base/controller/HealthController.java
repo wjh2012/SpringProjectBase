@@ -10,7 +10,6 @@ public class HealthController {
 
     @GetMapping("/health")
     public ResponseEntity<Object> health() {
-        return ResponseEntity.status(HttpStatus.OK).build();
-
+        return ResponseEntity.status(HttpStatus.OK).body("health ok");
     }
 }
