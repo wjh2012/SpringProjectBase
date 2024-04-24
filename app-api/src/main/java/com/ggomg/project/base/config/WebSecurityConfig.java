@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
+
 @Slf4j
 @Configuration
 @EnableWebSecurity
@@ -19,11 +20,14 @@ public class WebSecurityConfig {
   private final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
   private final RestAccessDeniedHandler restAccessDeniedHandler;
 
-  @Bean
-  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    http.authorizeHttpRequests((authorize) -> authorize.anyRequest().authenticated())
-        .exceptionHandling(exceptionConfig -> exceptionConfig.authenticationEntryPoint(
-            restAuthenticationEntryPoint).accessDeniedHandler(restAccessDeniedHandler));
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests(authorize -> authorize
+                .anyRequest().authenticated())
+            .exceptionHandling(exceptionConfig -> exceptionConfig
+                .authenticationEntryPoint(restAuthenticationEntryPoint)
+                .accessDeniedHandler(restAccessDeniedHandler));
 
     return http.build();
   }
