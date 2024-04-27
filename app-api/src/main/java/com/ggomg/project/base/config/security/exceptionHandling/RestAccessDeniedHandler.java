@@ -1,4 +1,4 @@
-package com.ggomg.project.base.config.exceptionHandling;
+package com.ggomg.project.base.config.security.exceptionHandling;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class RestAccessDeniedHandler implements AccessDeniedHandler {
 
-  @Override
-  public void handle(HttpServletRequest request, HttpServletResponse response,
-      AccessDeniedException accessDeniedException) throws IOException, ServletException {
-    response.sendError(HttpServletResponse.SC_FORBIDDEN, accessDeniedException.getMessage());
-  }
+    @Override
+    public void handle(HttpServletRequest request, HttpServletResponse response,
+        AccessDeniedException accessDeniedException) throws IOException, ServletException {
+        response.sendError(HttpServletResponse.SC_FORBIDDEN, accessDeniedException.getMessage());
+    }
 }

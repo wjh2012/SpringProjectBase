@@ -5,3 +5,4 @@ spring:
   config:
     import:
       - db-jpa.yml
+      - logging.yml
