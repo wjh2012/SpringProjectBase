@@ -6,3 +6,4 @@ spring:
     import:
       - db-jpa.yml
       - logging.yml
+      - security.yml
