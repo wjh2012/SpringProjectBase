@@ -1,0 +1,3 @@
+jwt:
+  private.key: classpath:key/app.key
+  public.key: classpath:key/app.pub
