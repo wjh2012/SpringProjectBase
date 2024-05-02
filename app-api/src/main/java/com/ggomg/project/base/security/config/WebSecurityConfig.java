@@ -22,7 +22,6 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -47,18 +46,18 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @RequiredArgsConstructor
 public class WebSecurityConfig {
 
-    private final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
-    private final RestAccessDeniedHandler restAccessDeniedHandler;
+  private final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+  private final RestAccessDeniedHandler restAccessDeniedHandler;
 
-    @Value("${jwt.public.key}")
-    RSAPublicKey key;
+  @Value("${jwt.public.key}")
+  RSAPublicKey key;
 
-    @Value("${jwt.private.key}")
-    RSAPrivateKey priv;
+  @Value("${jwt.private.key}")
+  RSAPrivateKey priv;
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        // @formatter:off
+  @Bean
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    // @formatter:off
         http
             .csrf(AbstractHttpConfigurer::disable)
 
@@ -82,55 +81,55 @@ public class WebSecurityConfig {
                 .accessDeniedHandler(new BearerTokenAccessDeniedHandler()));
 
         // @formatter:on
-        return http.build();
-    }
+    return http.build();
+  }
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedHeader("*");
-        config.addAllowedMethod("*");
-        config.addAllowedOrigin("http://localhost:3000"); // 허용할 출처
-        config.setAllowCredentials(true); // 쿠키 인증 요청 허용
-        config.setAllowPrivateNetwork(true); // PNA(private network access) 허용
-        config.setMaxAge(3000L); // 원하는 시간만큼 pre-flight 리퀘스트를 캐싱
-        source.registerCorsConfiguration("/**", config);
-        return source;
-    }
+  @Bean
+  public CorsConfigurationSource corsConfigurationSource() {
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    CorsConfiguration config = new CorsConfiguration();
+    config.addAllowedHeader("*");
+    config.addAllowedMethod("*");
+    config.addAllowedOrigin("http://localhost:3000"); // 허용할 출처
+    config.setAllowCredentials(true); // 쿠키 인증 요청 허용
+    config.setAllowPrivateNetwork(true); // PNA(private network access) 허용
+    config.setMaxAge(3000L); // 원하는 시간만큼 pre-flight 리퀘스트를 캐싱
+    source.registerCorsConfiguration("/**", config);
+    return source;
+  }
 
-    @Bean
-    public AuthenticationManager authenticationManager(UserDetailsService userDetailsService,
-        PasswordEncoder passwordEncoder) {
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService);
-        authenticationProvider.setPasswordEncoder(passwordEncoder);
+  @Bean
+  public AuthenticationManager authenticationManager(UserDetailsService userDetailsService,
+      PasswordEncoder passwordEncoder) {
+    DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+    authenticationProvider.setUserDetailsService(userDetailsService);
+    authenticationProvider.setPasswordEncoder(passwordEncoder);
 
-        return new ProviderManager(authenticationProvider);
-    }
+    return new ProviderManager(authenticationProvider);
+  }
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails userDetails = User.withDefaultPasswordEncoder().username("user")
-            .password("password").roles("USER").build();
+  @Bean
+  public UserDetailsService userDetailsService() {
+    UserDetails userDetails = User.withDefaultPasswordEncoder().username("user")
+        .password("password").roles("USER").build();
 
-        return new InMemoryUserDetailsManager(userDetails);
-    }
+    return new InMemoryUserDetailsManager(userDetails);
+  }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
+  @Bean
+  public PasswordEncoder passwordEncoder() {
+    return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+  }
 
-    @Bean
-    JwtDecoder jwtDecoder() {
-        return NimbusJwtDecoder.withPublicKey(this.key).build();
-    }
+  @Bean
+  JwtDecoder jwtDecoder() {
+    return NimbusJwtDecoder.withPublicKey(this.key).build();
+  }
 
-    @Bean
-    JwtEncoder jwtEncoder() {
-        JWK jwk = new RSAKey.Builder(this.key).privateKey(this.priv).build();
-        JWKSource<SecurityContext> jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
-        return new NimbusJwtEncoder(jwks);
-    }
+  @Bean
+  JwtEncoder jwtEncoder() {
+    JWK jwk = new RSAKey.Builder(this.key).privateKey(this.priv).build();
+    JWKSource<SecurityContext> jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
+    return new NimbusJwtEncoder(jwks);
+  }
 }

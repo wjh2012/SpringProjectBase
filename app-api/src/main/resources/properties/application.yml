@@ -1,9 +1,0 @@
-server:
-  port: 8080
-
-spring:
-  config:
-    import:
-      - db-jpa.yml
-      - logging.yml
-      - security.yml
