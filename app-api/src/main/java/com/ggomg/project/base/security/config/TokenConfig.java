@@ -38,7 +38,6 @@ public class TokenConfig {
     @Value("${jwt.private.key}")
     RSAPrivateKey priv;
 
-    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .csrf(AbstractHttpConfigurer::disable)

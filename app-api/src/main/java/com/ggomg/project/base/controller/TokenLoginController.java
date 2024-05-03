@@ -22,9 +22,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
-@RestController
+@RestController("/token")
 @RequiredArgsConstructor
-public class LoginController {
+public class TokenLoginController {
 
     private final AuthenticationManager authenticationManager;
     private final JwtEncoder encoder;
@@ -83,7 +83,6 @@ public class LoginController {
         if (authenticationResponse.isAuthenticated()) {
             Instant now = Instant.now();
             long expiry = 36000L;
-            // @formatter:off
             String scope = authenticationResponse.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(" "));
@@ -94,7 +93,6 @@ public class LoginController {
                 .subject(authenticationResponse.getName())
                 .claim("scope", scope)
                 .build();
-            // @formatter:on
             return ResponseEntity.ok(
                 this.encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue());
         }
