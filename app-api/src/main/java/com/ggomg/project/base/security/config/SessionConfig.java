@@ -28,7 +28,7 @@ public class SessionConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)) // 기본값
 
             .authorizeHttpRequests((request) -> request
-                .requestMatchers("/health", "/login").permitAll()
+                .requestMatchers("/health", "/login/**").permitAll()
                 .anyRequest().authenticated());
 
         return http.build();

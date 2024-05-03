@@ -18,18 +18,20 @@ import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
-@RestController("/token")
+@RequestMapping("/login")
+@RestController
 @RequiredArgsConstructor
 public class TokenLoginController {
 
     private final AuthenticationManager authenticationManager;
     private final JwtEncoder encoder;
 
-    @GetMapping("/login")
+    @GetMapping("/token")
     public ResponseEntity<Object> login(@RequestParam("username") String username,
         @RequestParam("password") String password) {
         Authentication authenticationRequest =
@@ -71,7 +73,7 @@ public class TokenLoginController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("login failed");
     }
 
-    @PostMapping("/login")
+    @PostMapping("/token")
     public ResponseEntity<Object> login(@RequestBody LoginRequest loginRequest) {
         Authentication authenticationRequest =
             UsernamePasswordAuthenticationToken.unauthenticated(loginRequest.username(),

@@ -48,7 +48,7 @@ public class TokenConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
             .authorizeHttpRequests((request) -> request
-                .requestMatchers("/health", "/login").permitAll()
+                .requestMatchers("/health", "/login/**").permitAll()
                 .anyRequest().authenticated())
 
             .oauth2ResourceServer((oauth2) -> oauth2

@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
-@RequestMapping("/session")
+@RequestMapping("/login")
 @RestController
 @RequiredArgsConstructor
 public class SessionLoginController {
 
     private final AuthenticationManager authenticationManager;
 
-    @GetMapping("/login")
+    @GetMapping("/session")
     public ResponseEntity<Object> login(@RequestParam("username") String username,
         @RequestParam("password") String password) {
         Authentication authenticationRequest =
@@ -38,7 +38,7 @@ public class SessionLoginController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("login failed");
     }
 
-    @PostMapping("/login")
+    @PostMapping("/session")
     public ResponseEntity<Object> login(
         @RequestBody LoginRequest loginRequest) {
         Authentication authenticationRequest =
