@@ -1,0 +1,16 @@
+
+//        AccessDeniedHandlerImpl accessDeniedHandler;
+//        CompositeAccessDeniedHandler compositeAccessDeniedHandler;
+//        NoOpAccessDeniedHandler noOpAccessDeniedHandler;
+//        ObservationMarkingAccessDeniedHandler observationMarkingAccessDeniedHandler;
+//        RequestMatcherDelegatingAccessDeniedHandler requestMatcherDelegatingAccessDeniedHandler;
+//        DelegatingAccessDeniedHandler delegatingAccessDeniedHandler;
+//        InvalidSessionAccessDeniedHandler invalidSessionAccessDeniedHandler;
+
+//        BasicAuthenticationEntryPoint basicAuthenticationEntryPoint;
+//        DelegatingAuthenticationEntryPoint delegatingAuthenticationEntryPoint;
+//        DigestAuthenticationEntryPoint digestAuthenticationEntryPoint;
+//        Http403ForbiddenEntryPoint http403ForbiddenEntryPoint;
+//        HttpStatusEntryPoint httpStatusEntryPoint;
+//        LoginUrlAuthenticationEntryPoint loginUrlAuthenticationEntryPoint;
+//        NoOpAuthenticationEntryPoint noOpAuthenticationEntryPoint;
