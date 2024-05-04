@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
 
 @Slf4j
 @Configuration
@@ -26,6 +27,9 @@ public class SessionConfig {
 
             .sessionManagement((session) -> session
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)) // 기본값
+
+            .securityContext(securityContext -> securityContext.securityContextRepository(
+                new RequestAttributeSecurityContextRepository()))
 
             .authorizeHttpRequests((request) -> request
                 .requestMatchers("/health", "/login/**").permitAll()

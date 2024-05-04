@@ -1,16 +1,20 @@
+AccessDeniedHandlerImpl
+CompositeAccessDeniedHandler
+NoOpAccessDeniedHandler
+ObservationMarkingAccessDeniedHandler
+RequestMatcherDelegatingAccessDeniedHandler
+DelegatingAccessDeniedHandler
+InvalidSessionAccessDeniedHandler
 
-//        AccessDeniedHandlerImpl accessDeniedHandler;
-//        CompositeAccessDeniedHandler compositeAccessDeniedHandler;
-//        NoOpAccessDeniedHandler noOpAccessDeniedHandler;
-//        ObservationMarkingAccessDeniedHandler observationMarkingAccessDeniedHandler;
-//        RequestMatcherDelegatingAccessDeniedHandler requestMatcherDelegatingAccessDeniedHandler;
-//        DelegatingAccessDeniedHandler delegatingAccessDeniedHandler;
-//        InvalidSessionAccessDeniedHandler invalidSessionAccessDeniedHandler;
+BasicAuthenticationEntryPoint
+DelegatingAuthenticationEntryPoint
+DigestAuthenticationEntryPoint
+Http403ForbiddenEntryPoint
+HttpStatusEntryPoint
+LoginUrlAuthenticationEntryPoint
+NoOpAuthenticationEntryPoint
 
-//        BasicAuthenticationEntryPoint basicAuthenticationEntryPoint;
-//        DelegatingAuthenticationEntryPoint delegatingAuthenticationEntryPoint;
-//        DigestAuthenticationEntryPoint digestAuthenticationEntryPoint;
-//        Http403ForbiddenEntryPoint http403ForbiddenEntryPoint;
-//        HttpStatusEntryPoint httpStatusEntryPoint;
-//        LoginUrlAuthenticationEntryPoint loginUrlAuthenticationEntryPoint;
-//        NoOpAuthenticationEntryPoint noOpAuthenticationEntryPoint;
+DelegatingSecurityContextRepository
+HttpSessionSecurityContextRepository
+NullSecurityContextRepository
+RequestAttributeSecurityContextRepository
