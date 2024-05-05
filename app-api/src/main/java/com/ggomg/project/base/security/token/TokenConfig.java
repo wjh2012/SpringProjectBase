@@ -1,4 +1,4 @@
-package com.ggomg.project.base.security.config;
+package com.ggomg.project.base.security.token;
 
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;

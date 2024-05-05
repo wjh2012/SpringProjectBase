@@ -1,4 +1,4 @@
-package com.ggomg.project.base.security.config;
+package com.ggomg.project.base.security.baseConfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
