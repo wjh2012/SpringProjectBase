@@ -40,7 +40,6 @@ public class TokenLoginController {
         Authentication authenticationResponse =
             this.authenticationManager.authenticate(authenticationRequest);
 
-        log.info(authenticationResponse.toString());
         if (authenticationResponse.isAuthenticated()) {
             Instant now = Instant.now();
             long expiry = 36000L;
@@ -81,7 +80,6 @@ public class TokenLoginController {
         Authentication authenticationResponse =
             this.authenticationManager.authenticate(authenticationRequest);
 
-        log.info(authenticationResponse.toString());
         if (authenticationResponse.isAuthenticated()) {
             Instant now = Instant.now();
             long expiry = 36000L;

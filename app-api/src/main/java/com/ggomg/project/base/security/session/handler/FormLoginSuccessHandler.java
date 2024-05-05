@@ -1,18 +1,18 @@
-package com.ggomg.project.base.security.session.formLogin.handler;
+package com.ggomg.project.base.security.session.handler;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-
-import java.io.IOException;
 
 public class FormLoginSuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+        Authentication authentication) throws IOException, ServletException {
         // 쿠키 생성
         Cookie sessionCookie = new Cookie("JSESSIONID", request.getSession().getId());
         sessionCookie.setHttpOnly(true);
