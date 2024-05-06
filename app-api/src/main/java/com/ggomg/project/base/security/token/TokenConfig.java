@@ -28,7 +28,6 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Slf4j
 @Configuration
-@EnableWebSecurity
 @RequiredArgsConstructor
 public class TokenConfig {
 

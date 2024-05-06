@@ -10,10 +10,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.context.SecurityContextHolderFilter;
+import org.springframework.security.web.context.SecurityContextPersistenceFilter;
 
 @Slf4j
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 @RequiredArgsConstructor
 public class FormLoginConfig {
 
@@ -31,7 +33,8 @@ public class FormLoginConfig {
             .authorizeHttpRequests((request) -> request
                 .requestMatchers("/health", "/login/**").permitAll()
                 .anyRequest().authenticated());
-
+        SecurityContextPersistenceFilter securityContextPersistenceFilter = new SecurityContextPersistenceFilter();
+        SecurityContextHolderFilter securityContextHolderFilter;
         return http.build();
     }
 }
