@@ -1,9 +1,10 @@
 package com.ggomg.project.base.security.session;
 
-import com.ggomg.project.base.security.session.handler.FormLoginFailureHandler;
-import com.ggomg.project.base.security.session.handler.FormLoginSuccessHandler;
+import com.ggomg.project.base.security.session.handler.SessionLoginFailureHandler;
+import com.ggomg.project.base.security.session.handler.SessionLoginSuccessHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -12,9 +13,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
-import org.springframework.security.web.context.DelegatingSecurityContextRepository;
-import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
-import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
 
 @Slf4j
 @Configuration
@@ -22,18 +20,16 @@ import org.springframework.security.web.context.RequestAttributeSecurityContextR
 @RequiredArgsConstructor
 public class FormLoginConfig {
 
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain formFilterChain(HttpSecurity http) throws Exception {
         http
+            .securityMatcher("/login/session/form/**")
             .csrf(AbstractHttpConfigurer::disable)
 
             .formLogin((form) -> form
-                .securityContextRepository(new DelegatingSecurityContextRepository( // 기본값
-                    new RequestAttributeSecurityContextRepository(),
-                    new HttpSessionSecurityContextRepository()
-                ))
-                .loginProcessingUrl("/login/form")
-                .successHandler(new FormLoginSuccessHandler())
-                .failureHandler(new FormLoginFailureHandler())
+                .loginProcessingUrl("/login/session/form")
+                .successHandler(new SessionLoginSuccessHandler("Session-Form login success"))
+                .failureHandler(new SessionLoginFailureHandler("Session-Form login failed"))
                 .permitAll())
 
             .sessionManagement((session) -> session

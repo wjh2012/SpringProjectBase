@@ -38,8 +38,10 @@ public class ApiTokenLoginConfig {
     @Value("${jwt.private.key}")
     RSAPrivateKey priv;
 
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain tokenFilterChain(HttpSecurity http) throws Exception {
         http
+            .securityMatcher("/login/token")
             .csrf(AbstractHttpConfigurer::disable)
 
             .sessionManagement((session) -> session

@@ -8,7 +8,13 @@ import java.io.IOException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-public class FormLoginSuccessHandler implements AuthenticationSuccessHandler {
+public class SessionLoginSuccessHandler implements AuthenticationSuccessHandler {
+
+    private final String message;
+
+    public SessionLoginSuccessHandler(String message) {
+        this.message = message;
+    }
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -24,7 +30,7 @@ public class FormLoginSuccessHandler implements AuthenticationSuccessHandler {
 
         // 리다이렉트 대신 ResponseEntity를 사용하여 성공 메시지 반환
         response.setStatus(HttpServletResponse.SC_OK);
-        response.getWriter().write("Form Login Success");
+        response.getWriter().write(message);
         response.getWriter().flush();
     }
 }
