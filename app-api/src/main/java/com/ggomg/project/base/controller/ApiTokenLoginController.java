@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
-@RequestMapping("/login")
 @RestController
+@RequestMapping("/login")
 @RequiredArgsConstructor
 public class ApiTokenLoginController {
 
