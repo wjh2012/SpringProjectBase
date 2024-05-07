@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/login")
 @RestController
 @RequiredArgsConstructor
-public class TokenLoginController {
+public class ApiTokenLoginController {
 
     private final AuthenticationManager authenticationManager;
     private final JwtEncoder encoder;
