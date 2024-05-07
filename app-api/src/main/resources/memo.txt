@@ -32,3 +32,6 @@ CsrfAuthenticationStrategy
 NullAuthenticatedSessionStrategy
 RegisterSessionAuthenticationStrategy
 SessionFixationProtectionStrategy
+
+DefaultBearerTokenResolver
+HeaderBearerTokenResolver
