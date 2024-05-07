@@ -1,4 +1,4 @@
-package com.ggomg.project.base.security;
+package com.ggomg.project.base.security.loginConfig;
 
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
@@ -15,7 +15,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
@@ -28,7 +27,6 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Slf4j
 @Configuration
-@EnableWebSecurity(debug = true)
 @RequiredArgsConstructor
 public class ApiTokenLoginConfig {
 
@@ -42,14 +40,11 @@ public class ApiTokenLoginConfig {
     public SecurityFilterChain tokenFilterChain(HttpSecurity http) throws Exception {
         http
             .securityMatcher("/login/token")
+
             .csrf(AbstractHttpConfigurer::disable)
 
             .sessionManagement((session) -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-
-            .authorizeHttpRequests((request) -> request
-                .requestMatchers("/health", "/login/**").permitAll()
-                .anyRequest().authenticated())
 
             .oauth2ResourceServer((oauth2) -> oauth2
                 .jwt(Customizer.withDefaults()))

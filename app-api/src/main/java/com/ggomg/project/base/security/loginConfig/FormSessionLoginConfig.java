@@ -1,4 +1,4 @@
-package com.ggomg.project.base.security;
+package com.ggomg.project.base.security.loginConfig;
 
 import com.ggomg.project.base.security.handler.SessionLoginFailureHandler;
 import com.ggomg.project.base.security.handler.SessionLoginSuccessHandler;
@@ -24,20 +24,13 @@ public class FormSessionLoginConfig {
     public SecurityFilterChain formFilterChain(HttpSecurity http) throws Exception {
         http
             .securityMatcher("/login/session/form/**")
+
             .csrf(AbstractHttpConfigurer::disable)
 
             .formLogin((form) -> form
                 .loginProcessingUrl("/login/session/form")
                 .successHandler(new SessionLoginSuccessHandler("Session-Form login success"))
-                .failureHandler(new SessionLoginFailureHandler("Session-Form login failed"))
-                .permitAll())
-
-            .sessionManagement((session) -> session
-                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)) // 기본값
-
-            .authorizeHttpRequests((request) -> request
-                .requestMatchers("/health", "/login/**").permitAll()
-                .anyRequest().authenticated())
+                .failureHandler(new SessionLoginFailureHandler("Session-Form login failed")))
 
             .exceptionHandling(exceptionConfig -> exceptionConfig
                 .authenticationEntryPoint(new Http403ForbiddenEntryPoint())

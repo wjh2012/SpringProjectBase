@@ -1,4 +1,4 @@
-package com.ggomg.project.base.security;
+package com.ggomg.project.base.security.loginConfig;
 
 import com.ggomg.project.base.security.filter.JsonSessionAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
@@ -25,17 +25,11 @@ public class JsonSessionLoginConfig {
     public SecurityFilterChain jsonFilterChain(HttpSecurity http) throws Exception {
         http
             .securityMatcher("/login/session/json/**")
+
             .csrf(AbstractHttpConfigurer::disable)
 
             .addFilterAfter(new JsonSessionAuthenticationFilter(authenticationManager),
-                LogoutFilter.class)
-
-            .sessionManagement((session) -> session
-                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)) // 기본값
-
-            .authorizeHttpRequests((request) -> request
-                .requestMatchers("/health", "/login/**").permitAll()
-                .anyRequest().authenticated());
+                LogoutFilter.class);
 
         return http.build();
     }
