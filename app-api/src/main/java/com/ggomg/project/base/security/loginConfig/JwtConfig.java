@@ -28,7 +28,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
-public class ApiTokenLoginConfig {
+public class JwtConfig {
 
     @Value("${jwt.public.key}")
     RSAPublicKey key;

@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.logout.LogoutFilter;
 @Configuration
 @EnableWebSecurity(debug = true)
 @RequiredArgsConstructor
-public class JsonSessionLoginConfig {
+public class JsonSessionConfig {
 
     private final AuthenticationManager authenticationManager;
 

@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.Http403ForbiddenEntryPoin
 @Configuration
 @EnableWebSecurity(debug = true)
 @RequiredArgsConstructor
-public class FormSessionLoginConfig {
+public class FormSessionConfig {
 
     @Bean
     public SecurityFilterChain formFilterChain(HttpSecurity http) throws Exception {
