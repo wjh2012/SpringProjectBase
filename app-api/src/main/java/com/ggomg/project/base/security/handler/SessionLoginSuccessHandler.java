@@ -1,4 +1,4 @@
-package com.ggomg.project.base.security.session.handler;
+package com.ggomg.project.base.security.handler;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;

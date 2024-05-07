@@ -1,7 +1,7 @@
-package com.ggomg.project.base.security.session;
+package com.ggomg.project.base.security;
 
-import com.ggomg.project.base.security.session.handler.SessionLoginFailureHandler;
-import com.ggomg.project.base.security.session.handler.SessionLoginSuccessHandler;
+import com.ggomg.project.base.security.handler.SessionLoginFailureHandler;
+import com.ggomg.project.base.security.handler.SessionLoginSuccessHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +18,7 @@ import org.springframework.security.web.authentication.Http403ForbiddenEntryPoin
 @Configuration
 @EnableWebSecurity(debug = true)
 @RequiredArgsConstructor
-public class FormLoginConfig {
+public class FormSessionLoginConfig {
 
     @Bean
     public SecurityFilterChain formFilterChain(HttpSecurity http) throws Exception {

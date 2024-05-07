@@ -1,6 +1,6 @@
-package com.ggomg.project.base.security.session;
+package com.ggomg.project.base.security;
 
-import com.ggomg.project.base.security.session.filter.JsonSessionAuthenticationFilter;
+import com.ggomg.project.base.security.filter.JsonSessionAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;

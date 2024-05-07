@@ -1,8 +1,8 @@
-package com.ggomg.project.base.security.session.filter;
+package com.ggomg.project.base.security.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ggomg.project.base.security.session.handler.SessionLoginFailureHandler;
-import com.ggomg.project.base.security.session.handler.SessionLoginSuccessHandler;
+import com.ggomg.project.base.security.handler.SessionLoginFailureHandler;
+import com.ggomg.project.base.security.handler.SessionLoginSuccessHandler;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
