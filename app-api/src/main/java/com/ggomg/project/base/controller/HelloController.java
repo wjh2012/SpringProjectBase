@@ -14,4 +14,9 @@ public class HelloController {
     public ResponseEntity<Object> health() {
         return ResponseEntity.status(HttpStatus.OK).body("hello");
     }
+
+    @GetMapping("/token/hello")
+    public ResponseEntity<Object> health2() {
+        return ResponseEntity.status(HttpStatus.OK).body("hello");
+    }
 }

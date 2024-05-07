@@ -39,9 +39,13 @@ public class ApiTokenLoginConfig {
     @Bean
     public SecurityFilterChain tokenFilterChain(HttpSecurity http) throws Exception {
         http
-            .securityMatcher("/login/token")
+            .securityMatcher("/login/token", "/token/**")
 
             .csrf(AbstractHttpConfigurer::disable)
+
+            .authorizeHttpRequests((request) -> request
+                .requestMatchers("/health", "/login/**").permitAll()
+                .anyRequest().authenticated())
 
             .sessionManagement((session) -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
