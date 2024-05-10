@@ -42,7 +42,7 @@ public class ApiTokenLoginController {
 
         if (authenticationResponse.isAuthenticated()) {
             Instant now = Instant.now();
-            long expiry = 36000L;
+            long expiry = 10L;
             String scope = authenticationResponse.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(" "));
@@ -82,7 +82,7 @@ public class ApiTokenLoginController {
 
         if (authenticationResponse.isAuthenticated()) {
             Instant now = Instant.now();
-            long expiry = 36000L;
+            long expiry = 10L;
             String scope = authenticationResponse.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(" "));

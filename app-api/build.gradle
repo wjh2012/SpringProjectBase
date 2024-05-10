@@ -6,7 +6,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-configuration-processor'
 
     // oauth2 토큰 발급 (java17 이상)
-//    implementation 'org.springframework.boot:spring-boot-starter-oauth2-authorization-server'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-authorization-server'
     // 토큰 검증
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
     // 토큰 이용
