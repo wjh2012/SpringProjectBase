@@ -42,6 +42,7 @@ public class JwtConfig {
             .securityMatcher("/login/token", "/token/**")
 
             .csrf(AbstractHttpConfigurer::disable)
+            .cors(Customizer.withDefaults())
 
             .authorizeHttpRequests((request) -> request
                 .requestMatchers("/health", "/login/**").permitAll()
